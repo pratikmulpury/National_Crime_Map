@@ -2,6 +2,7 @@
   <div id="app">
     <NavBar></NavBar>
     <Map></Map>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -9,15 +10,14 @@
   import BootstrapVue from 'bootstrap-vue'
   import NavBar from "./components/NavBar"
   import Map from "./components/Map"
+  import Footer from "./components/Footer"
   import Vue from 'vue'
   Vue.use(BootstrapVue);
   import 'bootstrap/dist/css/bootstrap.css'
   import 'bootstrap-vue/dist/bootstrap-vue.css'
-  import axios from 'axios'
-  import Router from './router';
 
   export default {
-    components: { NavBar, Map },
+    components: { NavBar, Map, Footer },
     data() {
       return {
         name: 'App'
@@ -31,31 +31,6 @@
   #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  
-  #link {
-    background: none !important;
-    border: none !important;
-    cursor: pointer !important;
-    font-size: 12px !important;
-    position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;
-    margin-right: 10px !important;
-    z-index: 10 !important;
-  }
-  
-  #signout {
-    padding-bottom: 3px !important;
-  }
-  
-  #nav {
-    background: #f5fafb !important;
-    background-color: #f5fafb !important;
-    position: relative !important;
-  }
-  #link:hover {
-    color: #1F7999 !important;
   }
   
   .links a {

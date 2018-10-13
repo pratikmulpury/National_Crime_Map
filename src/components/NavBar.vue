@@ -11,13 +11,16 @@
                     <b-nav-item class="links" :to="{name:'map'}">Map</b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
+            <SearchBar></SearchBar>
         </b-navbar>
     </div>
 </template>
 
 <script>
+    import SearchBar from "./SearchBar"
     export default {
-        name: "NavBar.vue"
+        name: "NavBar.vue",
+        components: { SearchBar },
     }
 </script>
 
