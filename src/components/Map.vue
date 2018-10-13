@@ -5,7 +5,7 @@
             <b-container fluid>
                 <b-row>
                     <b-col id="chloropleth" md="12" lg="6" xl="6" class="chartwrapper">
-
+                        <div id="map"></div>
                     </b-col>
                 </b-row>
             </b-container>
@@ -15,9 +15,6 @@
 
 
 <script>
-    import {
-        geojson
-    } from './data/py-departments-geojson'
     import * as d3 from "d3";
     import usjson from './data/us-states.json'
     
@@ -34,105 +31,25 @@
         },
         mounted() {
             // create charts
-            this.createCharts();
+            let map  = document.createElement('script');
+            map.setAttribute('src', 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.0/mapbox-gl.js');
+            document.head.appendChild(map);
+            this.drawMap();
         },
         methods: {
-            createCharts() {
-                // choropleth
-                var d3Geo = require("d3-geo")
-                var d3Queue = require("d3-queue")
-                var width = this.choroplethwidth;
-                var height = this.choroplethheight;
-                var lowColor = '#f9f9f9'
-                var highColor = '#1f7999'
-                // D3 Projection
+            drawMap() {
+                mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpbWl6dSIsImEiOiI0cl85c2pNIn0.RefZMaOzNn-IistVe-Zcnw'
 
-                // credit to brendan sudol for responsivefy method
-                function responsivefy(svg) {
-                    // get container + svg aspect ratio
-                    var container = d3.select(svg.node().parentNode),
-                        width = parseInt(svg.style("width")),
-                        height = parseInt(svg.style("height")),
-                        aspect = width / height;
+                //Setup mapbox-gl map
+                var map = new mapboxgl.Map({
+                    container: 'map', // container id
+                    style: 'mapbox://styles/mapbox/streets-v8',
+                    center: [141.15448379999998, 39.702053　],
+                    zoom: 4,
+                })
 
-                    // add viewBox and preserveAspectRatio properties,
-                    // and call resize so that svg resizes on inital page load
-                    svg.attr("viewBox", "0 0 " + width + " " + height)
-                        .attr("preserveAspectRatio", "xMinYMid")
-                        .call(resize);
-
-                    d3.select(window).on("resize." + container.attr("id"), resize);
-
-                    // get width of container and resize svg to fit it
-                    function resize() {
-                        var targetWidth = parseInt(container.style("width"));
-                        svg.attr("width", targetWidth);
-                        svg.attr("height", Math.round(targetWidth / aspect));
-                    }
-                }
-                // projection of US
-                var projection = d3Geo.geoAlbersUsa()
-                    .scale([width / 1.05])
-                    .translate([width / 2, height / 2]); // scale things down so see entire US
-                // Define path generator
-                var path = d3Geo.geoPath() // path generator that will convert GeoJSON to SVG paths
-                    .projection(projection); // tell path generator to use albersUsa projection
-                //Create or select SVG element and append map to the SVG
-                var keys = Object.keys(d3.select("svg"));
-                var svg = [];
-                if (d3.select("svg")[keys[0]][0][0] == null) {
-                    svg = d3.select("#chloropleth")
-                        .append("svg")
-                        .attr("width", width)
-                        .attr("height", height)
-                        .call(responsivefy);
-                } else {
-                    svg = d3.select("svg");
-                }
-
-
-                // color by ratio of patients in IRIS to state population
-                var minVal = d3.min(ratio)
-                var maxVal = d3.max(ratio)
-
-                var ramp = d3.scaleLinear().domain([minVal, maxVal]).range([lowColor, highColor])
-                // Load GeoJSON data and merge with states data
-                var json = this.usjson;
-                for (var i = 0; i < patients.length; i++) {
-                    // Grab State Name
-                    var dataState = states[i];
-                    // Grab data value 
-                    var dataValue = ratio[i];
-                    // Find the corresponding state inside the GeoJSON
-                    for (var j = 0; j < json.features.length; j++) {
-                        var jsonState = json.features[j].properties.name;
-                        if (dataState == jsonState) {
-                            // Copy the data value into the JSON
-                            json.features[j].properties.value = dataValue;
-                            json.features[j].properties.value2 = patients[i];
-                            // Stop looking through the JSON
-                            break;
-                        }
-                    }
-                }
-
-                // color based on ratio of patients to state population
-                var paths = svg.selectAll("path")
-                    .data(json.features)
-                    .enter()
-                    .append("path")
-                    .attr("d", path)
-                    .style("stroke", "#fff")
-                    .style("stroke-width", "1")
-                    .style("fill", function(d) {
-                        return ramp(d.properties.value)
-                    });
-
-                // add and position text labels indicating number of patients in IRIS per state
-                var labels = svg.append("svg:g")
-                    .attr("id", "labels")
-                    .attr("class", "Title");
-            }
+                map.addControl(new mapboxgl.Navigation());
+            },
         }
     }
 </script>
