@@ -30,4 +30,16 @@
         height: 50px;
         margin: 10px;
     }
+    @media only screen and (max-width: 640px) {
+        img {
+            width: 50px !important;
+            height: 50px !important;
+        }
+    }
+    @media only screen and (max-width: 640px) {
+        SearchBar {
+            position: static;
+            width: auto;
+        }
+    }
 </style>

@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <NavBar></NavBar>
+    <Navbar></Navbar>
     <div class="row">
       <div class="col-xl">
         <Map></Map>
       </div>
       <div class="col-sm">
-        <DropDown></DropDown>
+        <Dropdown></Dropdown>
       </div>
     </div>
     <Footer></Footer>
@@ -15,9 +15,9 @@
 
 <script>
   import BootstrapVue from 'bootstrap-vue'
-  import NavBar from "./components/NavBar"
+  import Navbar from "./components/NavBar"
   import Map from "./components/Map"
-  import DropDown from "./components/DrownDown"
+  import Dropdown from "./components/DrownDown"
   import Footer from "./components/Footer"
   import Vue from 'vue'
   Vue.use(BootstrapVue);
@@ -25,7 +25,7 @@
   import 'bootstrap-vue/dist/bootstrap-vue.css'
 
   export default {
-    components: { NavBar, Map, DropDown, Footer },
+    components: { Navbar, Map, Dropdown, Footer },
     data() {
       return {
         name: 'App'
