@@ -4,7 +4,7 @@
             <!--Graphs-->
             <b-container fluid>
                 <b-row>
-                    <b-col md="12" lg="6" xl="6" class="chartwrapper">
+                    <b-col md="10" lg="10" xl="10" class="chartwrapper">
                         <div id="map"></div>
                     </b-col>
                 </b-row>
@@ -56,10 +56,18 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     #map {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
+        height: 600px;
+        margin-bottom: 10px;
+    }
+
+    #map img {
+        max-width: none;
+        min-width: 300px;
+        height: auto;
+
+    }
+    .Home {
+        padding-top: 20px;
     }
     
     #wrapper {
@@ -69,8 +77,6 @@
     .chartwrapper {
         margin-left: auto;
         margin-right: auto;
-        width: 100%;
-        height: 100%;
         padding: 0px;
     }
     

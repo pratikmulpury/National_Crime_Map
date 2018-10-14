@@ -1,7 +1,14 @@
 <template>
   <div id="app">
     <NavBar></NavBar>
-    <Map></Map>
+    <div class="row">
+      <div class="col-xl">
+        <Map></Map>
+      </div>
+      <div class="col-sm">
+        <DropDown></DropDown>
+      </div>
+    </div>
     <Footer></Footer>
   </div>
 </template>
@@ -10,6 +17,7 @@
   import BootstrapVue from 'bootstrap-vue'
   import NavBar from "./components/NavBar"
   import Map from "./components/Map"
+  import DropDown from "./components/DrownDown"
   import Footer from "./components/Footer"
   import Vue from 'vue'
   Vue.use(BootstrapVue);
@@ -17,7 +25,7 @@
   import 'bootstrap-vue/dist/bootstrap-vue.css'
 
   export default {
-    components: { NavBar, Map, Footer },
+    components: { NavBar, Map, DropDown, Footer },
     data() {
       return {
         name: 'App'
@@ -40,12 +48,6 @@
   
   .links a:hover {
     color: #1F7999 !important;
-  }
-  
-  img {
-    width: 250px !important;
-    height: auto !important;
-    margin-top: -16px !important;
   }
   
   span {

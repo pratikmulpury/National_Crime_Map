@@ -2,7 +2,7 @@
     <div id="nav">
         <b-navbar toggleable="md" type="light">
             <b-navbar-brand href="#">
-                <img src="/static/Logo-wide-white.png" />
+                <img class="logo" src="https://learnstuff.io/img/favicon.png"/>
             </b-navbar-brand>
             <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
             <b-collapse  is-nav id="nav_collapse">
@@ -25,5 +25,9 @@
 </script>
 
 <style scoped>
-
+    img {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+    }
 </style>
