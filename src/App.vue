@@ -2,12 +2,12 @@
   <div id="app">
     <Navbar></Navbar>
     <div class="row">
-      <div class="col-xl">
-        <Map></Map>
-      </div>
-      <div class="col-sm">
+        <b-col md="6" lg="6" xl="6" class="chartwrapper">
+          <Map></Map>
+          </b-col>
+      <b-col md="6" lg="6" xl="6" class="test">
         <Dropdown></Dropdown>
-      </div>
+      </b-col>
     </div>
     <Footer></Footer>
   </div>
@@ -17,7 +17,7 @@
   import BootstrapVue from 'bootstrap-vue'
   import Navbar from "./components/NavBar"
   import Map from "./components/Map"
-  import Dropdown from "./components/DrownDown"
+  import Dropdown from "./components/DropDown.vue"
   import Footer from "./components/Footer"
   import Vue from 'vue'
   Vue.use(BootstrapVue);
@@ -40,7 +40,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
   .links a {
     color: #1A1A1A !important;
     margin-top: -4px;

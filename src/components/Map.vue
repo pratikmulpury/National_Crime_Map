@@ -3,11 +3,7 @@
         <div id="wrapper">
             <!--Graphs-->
             <b-container fluid>
-                <b-row>
-                    <b-col md="10" lg="10" xl="10" class="chartwrapper">
-                        <div id="map"></div>
-                    </b-col>
-                </b-row>
+                <div id="map"></div>
             </b-container>
         </div>
     </div>
@@ -34,6 +30,10 @@
             // create charts
             this.drawMap();
         },
+        updated() {
+            // create charts
+            this.drawMap();
+        },
         methods: {
             drawMap() {
                 mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpbWl6dSIsImEiOiI0cl85c2pNIn0.RefZMaOzNn-IistVe-Zcnw'
@@ -45,9 +45,10 @@
                     center: [-78.89, 35.99],
                     zoom: 12,
                 })
-
-                map.addControl(new mapboxgl.Navigation());
-
+                map.fitBounds([[
+                    -78.89,
+                    -35.99
+                ]]);
             },
         }
     }
@@ -55,29 +56,15 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    #map {
-        height: 600px;
-        margin-bottom: 10px;
-    }
-
-    #map img {
-        max-width: none;
-        min-width: 300px;
-        height: auto;
-
+    #map{
+        min-height:500px;
+        max-width:800px;
     }
     .Home {
         padding-top: 20px;
     }
-    
     #wrapper {
         justify-content: center;
-    }
-
-    .chartwrapper {
-        margin-left: auto;
-        margin-right: auto;
-        padding: 0px;
     }
     
     @media only screen and (max-width: 806px) {
@@ -86,6 +73,12 @@
         }
         h6 {
             font-size: 10px;
+        }
+    }
+    @media only screen and (min-width: 1100px) {
+        #map{
+            min-height:500px;
+            max-width:800px;
         }
     }
 </style>

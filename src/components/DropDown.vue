@@ -1,9 +1,9 @@
 <template>
     <div class="drop-down">
-        <b-dropdown id="ddown" text="Crime Type" class="m-5">
+        <b-dropdown id="dropdown" text="Crime Type" class="m-5">
             <b-dropdown-item v-for="murder in murders">{{ murder.murdercount }}</b-dropdown-item>
         </b-dropdown>
-        <b-btn v-b-toggle.collapse1 variant="primary">Legend</b-btn>
+        <b-btn id = "legend"  v-b-toggle.collapse1 variant="primary">Legend</b-btn>
         <b-collapse id="collapse1" class="mt-2">
             <b-card>
                 <div class="row">
@@ -20,7 +20,7 @@
 
 <script>
     export default {
-        name: "DrownDown.vue",
+        name: "DropDown.vue",
         data: function() {
             return {
                 murders: [{
@@ -38,10 +38,17 @@
 </script>
 
 <style scoped>
-    .drop-down {
-        width: 100%;
+    #legend{
+        margin-left:49px;
     }
-    #ddown {
+    b-dropdown {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #dropdown {
         width: 200%;
+        margin-left: auto;
+        margin-right: auto;
     }
 </style>
