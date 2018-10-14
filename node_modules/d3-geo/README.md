@@ -29,7 +29,7 @@ If you use NPM, `npm install d3-geo`. Otherwise, download the [latest release](h
 <script src="https://d3js.org/d3-geo.v1.min.js"></script>
 <script>
 
-var projection = d3.geoNaturalEarth1(),
+var projection = d3.geoEqualEarth(),
     path = d3.geoPath(projection);
 
 </script>
@@ -267,6 +267,15 @@ The orthographic projection.
 [<img src="https://raw.githubusercontent.com/d3/d3-geo/master/img/stereographic.png" width="480" height="250">](https://bl.ocks.org/mbostock/3757137)
 
 The stereographic projection.
+
+#### Equal-Earth
+
+<a href="#geoEqualEarth" name="geoEqualEarth">#</a> d3.<b>geoEqualEarth</b>() [<>](https://github.com/d3/d3-geo/blob/master/src/projection/equalEarth.js "Source")
+<br><a href="#geoEqualEarthRaw" name="geoEqualEarthRaw">#</a> d3.<b>geoEqualEarthRaw</b>
+
+[<img src="https://raw.githubusercontent.com/d3/d3-geo/master/img/equalEarth.png" width="480" height="250">](http://shadedrelief.com/ee_proj/)
+
+The Equal Earth projection, by Bojan Šavrič _et al._, 2018.
 
 #### Composite Projections
 
