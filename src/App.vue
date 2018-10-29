@@ -1,38 +1,31 @@
 <template>
   <div id="app">
-    <!--Navbar-->
-    <div id="nav">
-      <b-navbar toggleable="md" type="light">
-        <b-navbar-brand href="#">
-          <img src="/static/Logo-wide-white.png" />
-        </b-navbar-brand>
-        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-        <b-collapse  is-nav id="nav_collapse">
-          <b-navbar-nav right>
-            <b-nav-item class="links" :to="{name:'home'}">Home</b-nav-item>
-            <b-nav-item class="links" :to="{name:'map'}">Map</b-nav-item>
-          </b-navbar-nav>
-        </b-collapse>
-        <span > Test </span>
-      </b-navbar>
+    <Navbar></Navbar>
+    <div class="row">
+        <b-col md="6" lg="6" xl="6" class="chartwrapper">
+          <Map></Map>
+          </b-col>
+      <b-col md="6" lg="6" xl="6" class="test">
+        <Dropdown></Dropdown>
+      </b-col>
     </div>
-    <!--Component to be Displayed-->
-    <router-view></router-view>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
   import BootstrapVue from 'bootstrap-vue'
-  
+  import Navbar from "./components/NavBar"
+  import Map from "./components/Map"
+  import Dropdown from "./components/DropDown.vue"
+  import Footer from "./components/Footer"
   import Vue from 'vue'
   Vue.use(BootstrapVue);
   import 'bootstrap/dist/css/bootstrap.css'
   import 'bootstrap-vue/dist/bootstrap-vue.css'
-  import axios from 'axios'
-  import Router from './router';
 
   export default {
-  
+    components: { Navbar, Map, Dropdown, Footer },
     data() {
       return {
         name: 'App'
@@ -47,32 +40,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
-  #link {
-    background: none !important;
-    border: none !important;
-    cursor: pointer !important;
-    font-size: 12px !important;
-    position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;
-    margin-right: 10px !important;
-    z-index: 10 !important;
-  }
-  
-  #signout {
-    padding-bottom: 3px !important;
-  }
-  
-  #nav {
-    background: #f5fafb !important;
-    background-color: #f5fafb !important;
-    position: relative !important;
-  }
-  #link:hover {
-    color: #1F7999 !important;
-  }
-  
   .links a {
     color: #1A1A1A !important;
     margin-top: -4px;
@@ -80,12 +47,6 @@
   
   .links a:hover {
     color: #1F7999 !important;
-  }
-  
-  img {
-    width: 250px !important;
-    height: auto !important;
-    margin-top: -16px !important;
   }
   
   span {
