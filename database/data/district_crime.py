@@ -5,7 +5,7 @@ import os
 import numpy as np
 
 datapath = os.path.dirname(__file__)
-beatspath = os.path.join(datapath, 'durham_2018_districts.csv')
+beatspath = os.path.join(datapath, 'durham_2018_geojson.csv')
 crimepath = os.path.join(datapath, 'durham_2018_crime.csv')
 
 df_beats = pd.read_csv(beatspath)
@@ -41,8 +41,6 @@ for i in range(np.shape(df_crime)[0]):
 
 new_df = pd.DataFrame(new_map)
 new_df.to_csv(os.path.join(datapath, "durham_2018_dc.csv"), index=False)
-
-
 
 # for point in df['Geo Shape']:
 #     pos = [float(ele) for ele in points[0].split(", ")]

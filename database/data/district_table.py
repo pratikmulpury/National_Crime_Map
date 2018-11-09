@@ -17,5 +17,9 @@ df['id'] = pd.Series(id_list, df.index)
 df = df[SCHEMA_LIST]
 
 df = df.rename(columns = {"LAWBEAT": "law_beat", "Geo Shape": "geojson", "CONTIGUOUS": "contiguous", "LAWDIST": "district"})
+df.to_csv(os.path.join(datapath, "durham_2018_geojson.csv"), index=False, header=True)
+
+SCHEMA_CLEAN = ['id', 'law_beat', 'contiguous', 'district']
+df =df[SCHEMA_CLEAN]
 
 df.to_csv(os.path.join(datapath, "durham_2018_districts.csv"), index=False, header=True)

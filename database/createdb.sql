@@ -5,15 +5,15 @@ CREATE TABLE Crimes
   id NUMERIC(10) NOT NULL PRIMARY KEY,
   date_occu DATE,
   time_occu TIME,
-  description CHAR(128),
-  type CHAR(64)
+  time_stamp TIMESTAMP,
+  description TEXT,
+  type TEXT
 );
 
 CREATE TABLE Districts
 (
   id NUMERIC(10) NOT NULL PRIMARY KEY,
   beat_num NUMERIC(10) NOT NULL,
-  geo_json TEXT,
   contiguous BOOLEAN,
   district TEXT
 );
@@ -21,5 +21,5 @@ CREATE TABLE Districts
 CREATE TABLE Location
 (
   inci_id NUMERIC(10) REFERENCES Crimes(id),
-  dist_id NUMERIC(10) REFERENCES Districts(id)
+  dist_id NUMERIC(10) NOT NULL
 );

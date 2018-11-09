@@ -10,13 +10,19 @@ SCHEMA_LIST = [
 'incident_id',
 'date',
 'time',
+'timestamp',
 'description',
 'type'
 ]
 
-# TYPE_ONE_CRIME = ['AGGRAVATED ASSAULT', 'LARCENY', 'BREAK IN', 'RAPE', 'ROBBERY', 'ROBB',
-# 'CARJACK', 'ARSON', 'STOLEN VEHICLE', 'STABBING', 'ABDUCTION',
-# 'KIDNAP', 'HOME INVASION', 'HOSTAGE', 'MURDER', 'HOMICIDE', 'MANSLAUGHTER']
+TYPE_ONE_CRIME = ['AGGRAVATED ASSAULT', 'LARCENY', 'BREAK IN', 'RAPE', 'ROBBERY', 'ROBB',
+'CARJACK', 'ARSON', 'STOLEN VEHICLE', 'STABBING', 'ABDUCTION',
+'KIDNAP', 'HOME INVASION', 'HOSTAGE', 'MURDER', 'HOMICIDE', 'MANSLAUGHTER']
+
+# result = []
+# for i in TYPE_ONE_CRIME:
+#     result.append('%'+ i.lower() + '%')
+# print(result)
 #
 # MURDER_KEYWORDS = ['MURDER', 'HOMICIDE', 'MANSLAUGHTER']
 # ROBBERY_KEYWORDS = ['ROBBERY', 'ROBB', 'CARJACK']
@@ -30,6 +36,7 @@ df = df[df['date_rept'].str.contains('2018')].drop_duplicates()
 df['monthstamp'] = df['monthstamp'].apply(lambda x: str(x).zfill(2))
 df['date'] = [str(a).split('T')[0] for a in df['date_occu']]
 df['time'] = [b[0:2] + ":" + b[2:4] for b in df['hour_occu']]
+df['timestamp'] = [str(a).split('T')[0] + " " + b[0:2] + ":" + b[2:4] for a,b in zip(df['date_occu'], df['hour_occu'])]
 
 # def categorize(df, keyword_list):
 #     res = []
